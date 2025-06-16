@@ -7,6 +7,17 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+:root {
+  --yellow-bg: #FCD858;
+  --yellow-top: #FFB326;
+  --green-btn: #32D657;
+  --green-hov: #24B648;
+  --red-btn: #E64444;
+  --red-hov: #C93636;
+  --grey-btn: #F0F0F0;
+  --grey-text: #9A9A9A;
+}
+
 .folder-bg {
   position: relative;
   min-height: 100vh;

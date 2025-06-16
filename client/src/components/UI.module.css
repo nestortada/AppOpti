@@ -1,0 +1,94 @@
+.header {
+  background: linear-gradient(var(--yellow-top), var(--yellow-bg));
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  height: 120px;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+}
+
+.previewBox {
+  background: #E5E5E5;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: pre;
+  font-family: 'Courier New', monospace;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn {
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  padding: 0.9rem 2.5rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btnGreen {
+  background: var(--green-btn);
+  color: #000;
+}
+
+.btnGreen:hover:not(:disabled) {
+  background: var(--green-hov);
+}
+
+.btnRed {
+  background: var(--red-btn);
+  color: #000;
+}
+
+.btnRed:hover:not(:disabled) {
+  background: var(--red-hov);
+}
+
+.btnGrey {
+  background: var(--grey-btn);
+  color: var(--grey-text);
+}
+
+.fileName {
+  margin-left: 1rem;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 4px solid var(--grey-text);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hiddenInput {
+  display: none;
+}
