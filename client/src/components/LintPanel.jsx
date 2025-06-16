@@ -14,20 +14,10 @@ export default function LintPanel() {
   if (!lint.length) return null;
 
   return (
-    <div className="w-[411px] h-[385px] bg-brand-preview rounded-lg relative overflow-hidden">
-      <div className="w-[68.5px] h-full bg-brand-lineNumbers rounded-l-lg absolute left-0 top-0 font-fira-code font-bold text-[14px] text-white">
-        {Array.from({ length: 10 }, (_, i) => (
-          <div key={i} className="h-[35px] flex items-center justify-center tracking-[0.2em]">
-            {i + 1}
-          </div>
-        ))}
-      </div>
-      <div className="pl-[80px] pt-4">
-        <h2 className="text-white font-fira-code text-sm mb-2">Lint Results</h2>
-        <pre className="text-white font-fira-code text-sm whitespace-pre">
-          {lint.map((e, i) => `${e.severity}: ${e.msg}`).join('\n')}
-        </pre>
-      </div>
-    </div>
+    <pre className="bg-gray-900 text-green-300 overflow-y-auto max-h-96 p-4 rounded-lg text-sm" aria-label="Lint results">
+      <code className="whitespace-pre">
+        {lint.map((e, i) => `${i + 1} ${e.severity}: ${e.msg}`).join('\n')}
+      </code>
+    </pre>
   );
 }

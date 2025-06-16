@@ -8,9 +8,9 @@ export default function IssuesPanel() {
   if (!issues.length) return null;
 
   return (
-    <div className="mt-6 p-4 bg-gray-50 rounded-lg" role="alert">
-      <h2 className="text-lg font-medium text-brand-blue mt-6 mb-2 first:mt-0">Inconsistencias</h2>
-      <ul className="list-disc pl-5">
+    <div className="mt-4 bg-red-50 border-l-4 border-red-400 p-4 rounded-md text-red-800" role="alert">
+      <h2 className="font-medium mb-2">Inconsistencias</h2>
+      <ul className="list-disc pl-5 space-y-1 text-sm">
         {issues.map((i, idx) => (
           <li key={idx}>{i}</li>
         ))}

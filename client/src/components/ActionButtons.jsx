@@ -6,13 +6,15 @@ import MinAssistText from './MinAssistText';
 
 export default function ActionButtons({ min, setMin }) {
   return (
-    <div className="flex flex-col items-center gap-16">
+    <div className="flex flex-col items-center gap-6 flex-1">
       <FileUploader />
       <div className="flex items-center gap-4">
         <MinAssistText />
         <MinDaysInput value={min} onChange={setMin} />
       </div>
-      <OptimizeButton minDays={min} />
+      <div className="mt-auto flex justify-center w-full">
+        <OptimizeButton minDays={min} />
+      </div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function FileUploader() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full max-w-md">
       <input
         id="file-input"
         type="file"
@@ -44,13 +44,11 @@ export default function FileUploader() {
       />
       <label
         htmlFor="file-input"
-        className="w-[371px] h-[70px] flex items-center gap-6 bg-brand-uploadBtn text-black shadow-custom cursor-pointer"
+        className="w-full h-14 flex items-center justify-center gap-3 bg-brand-uploadBtn text-black shadow-custom cursor-pointer"
         aria-label="Cargar archivo"
       >
-        <div className="ml-3">
-          <FileIcon className="w-10 h-10" />
-        </div>
-        <span className="font-inter text-base tracking-[0.5em]">Subir archivo json</span>
+        <FileIcon className="w-6 h-6" />
+        <span className="tracking-widest">Cargar archivo</span>
       </label>
     </div>
   );
