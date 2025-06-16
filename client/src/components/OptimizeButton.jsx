@@ -2,6 +2,7 @@
 import api from '../api/axios';
 import { toast } from 'react-hot-toast';
 import { useFile } from '../context/FileContext';
+import styles from './UI.module.css';
 
 export default function OptimizeButton({ minDays }) {
   const { fileId, lint } = useFile();
@@ -16,9 +17,10 @@ export default function OptimizeButton({ minDays }) {
 
   return (
     <button
-      className="bg-[#E74C3C] text-black rounded-full shadow-lg px-8 py-2 text-xl disabled:opacity-50"
+      className={`${styles.btn} ${styles.btnRed}`}
       onClick={click}
       disabled={!fileId || hasErrors}
+      aria-label="Optimizar"
     >
       Optimizar
     </button>

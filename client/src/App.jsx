@@ -4,25 +4,34 @@ import JsonPreview from './components/JsonPreview';
 import LintAccordion from './components/LintAccordion';
 import MinDaysInput from './components/MinDaysInput';
 import OptimizeButton from './components/OptimizeButton';
+import InconsistencyPanel from './components/InconsistencyPanel';
+import MinAssistButton from './components/MinAssistButton';
 import { FileProvider, useFile } from './context/FileContext';
 import { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
+import styles from './components/UI.module.css';
 
 function Inner() {
   const [min, setMin] = useState('');
   const { fileId } = useFile();
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-[40px] mt-[25px] font-normal">Optimización de Puestsos</h1>
-      <div className="flex flex-col items-center mt-10 space-y-4">
-        <FileUploader />
-        <OptimizeButton minDays={min} />
-        <MinDaysInput value={min} onChange={setMin} />
-      </div>
-      <JsonPreview />
-      <LintAccordion />
-    </div>
+    <>
+      <header className={styles.header} />
+      <main className={styles.main}>
+        <section>
+          <JsonPreview />
+          <InconsistencyPanel />
+          <LintAccordion />
+        </section>
+        <section className={styles.buttons}>
+          <FileUploader />
+          <OptimizeButton minDays={min} />
+          <MinAssistButton />
+          <MinDaysInput value={min} onChange={setMin} />
+        </section>
+      </main>
+    </>
   );
 }
 
