@@ -1,16 +1,25 @@
 // Display uploaded JSON summary and sample
 import { useFile } from '../context/FileContext';
+
 export default function JsonPreview() {
   const { summary, sample } = useFile();
 
   if (!summary) return null;
   const lines = JSON.stringify({ summary, sample }, null, 2).split('\n');
-  const preview = lines.slice(0, 40).join('\n') + (lines.length > 40 ? '\u2026' : '');
+  const preview = lines.slice(0, 10).join('\n') + (lines.length > 10 ? '\u2026' : '');
 
   return (
-    <div>
-      <h2 className="text-lg font-medium text-brand-blue mt-6 mb-2">Preview Archivo Json</h2>
-      <pre className="h-[220px] overflow-auto rounded-xl bg-gradient-to-b from-[#162338] to-[#0f1b2c] text-[#c9d1e9] font-mono text-sm relative before:absolute before:left-0 before:top-0 before:h-full before:w-12 before:bg-black/10 before:content-['']"><code className="block whitespace-pre">{preview}</code></pre>
+    <div className="w-[411px] h-[385px] bg-brand-preview rounded-lg relative overflow-hidden">
+      <div className="w-[68.5px] h-full bg-brand-lineNumbers rounded-l-lg absolute left-0 top-0 font-fira-code font-bold text-[14px] text-white">
+        {Array.from({ length: 10 }, (_, i) => (
+          <div key={i} className="h-[35px] flex items-center justify-center tracking-[0.2em]">
+            {i + 1}
+          </div>
+        ))}
+      </div>
+      <pre className="pl-[80px] pt-4 text-white font-fira-code text-sm">
+        <code className="block whitespace-pre">{preview}</code>
+      </pre>
     </div>
   );
 }

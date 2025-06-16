@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import api from '../api/axios';
 import { useFile } from '../context/FileContext';
+
 export default function LintPanel() {
   const { fileId, lint, setLint } = useFile();
 
@@ -11,10 +12,22 @@ export default function LintPanel() {
   }, [fileId, setLint]);
 
   if (!lint.length) return null;
+
   return (
-    <div className="mt-6 p-4 bg-[#FFEEDB] border-2 border-dashed border-orange-400 overflow-auto rounded-lg" role="alert">
-      <h2 className="text-lg font-medium text-brand-blue mt-6 mb-2 first:mt-0">Lint Result</h2>
-      <pre className="font-mono text-sm whitespace-pre">{lint.map((e) => `${e.severity}: ${e.msg}`).join('\n')}</pre>
+    <div className="w-[411px] h-[385px] bg-brand-preview rounded-lg relative overflow-hidden">
+      <div className="w-[68.5px] h-full bg-brand-lineNumbers rounded-l-lg absolute left-0 top-0 font-fira-code font-bold text-[14px] text-white">
+        {Array.from({ length: 10 }, (_, i) => (
+          <div key={i} className="h-[35px] flex items-center justify-center tracking-[0.2em]">
+            {i + 1}
+          </div>
+        ))}
+      </div>
+      <div className="pl-[80px] pt-4">
+        <h2 className="text-white font-fira-code text-sm mb-2">Lint Results</h2>
+        <pre className="text-white font-fira-code text-sm whitespace-pre">
+          {lint.map((e, i) => `${e.severity}: ${e.msg}`).join('\n')}
+        </pre>
+      </div>
     </div>
   );
 }

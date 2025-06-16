@@ -2,6 +2,8 @@
 import api from '../api/axios';
 import { toast } from 'react-hot-toast';
 import { useFile } from '../context/FileContext';
+import { Settings } from 'lucide-react';
+
 export default function OptimizeButton({ minDays }) {
   const { fileId, lint } = useFile();
   const hasErrors = lint.some((e) => e.severity === 'error');
@@ -14,13 +16,18 @@ export default function OptimizeButton({ minDays }) {
   };
 
   return (
-    <button
-      className="w-3/5 max-w-[240px] h-12 mx-auto mt-6 flex items-center justify-center gap-2 bg-brand-mint text-white font-semibold rounded-xl transition hover:bg-brand-mint/90 disabled:opacity-50 disabled:cursor-not-allowed"
-      onClick={click}
-      disabled={!fileId || hasErrors}
-      aria-label="Optimizar"
-    >
-      Optimizar
-    </button>
+    <div className="relative">
+      <button
+        className="w-[263px] h-[70px] flex items-center gap-4 bg-brand-optimizeBtn shadow-custom disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={click}
+        disabled={!fileId || hasErrors}
+        aria-label="Optimizar"
+      >
+        <div className="ml-3">
+          <Settings className="w-12 h-12" />
+        </div>
+        <span className="font-inter text-base tracking-[0.5em]">Optimizar</span>
+      </button>
+    </div>
   );
 }

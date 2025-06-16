@@ -3,6 +3,7 @@ import { useState } from 'react';
 import api from '../api/axios';
 import { toast } from 'react-hot-toast';
 import { useFile } from '../context/FileContext';
+import { FileIcon } from 'lucide-react';
 
 
 export default function FileUploader() {
@@ -33,7 +34,7 @@ export default function FileUploader() {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="relative">
       <input
         id="file-input"
         type="file"
@@ -43,15 +44,14 @@ export default function FileUploader() {
       />
       <label
         htmlFor="file-input"
-        className="w-full h-14 flex items-center justify-center gap-3 bg-brand-lightmint text-brand-blue font-semibold rounded-xl transition hover:bg-brand-lightmint/90 hover:-translate-y-[2px] hover:shadow-md cursor-pointer"
+        className="w-[371px] h-[70px] flex items-center gap-6 bg-brand-uploadBtn text-black shadow-custom cursor-pointer"
         aria-label="Cargar archivo"
       >
-        Cargar archivo
+        <div className="ml-3">
+          <FileIcon className="w-10 h-10" />
+        </div>
+        <span className="font-inter text-base tracking-[0.5em]">Subir archivo json</span>
       </label>
-      {fileName && <span className="ml-2 text-sm">{fileName}</span>}
-      {loading && (
-        <span className="ml-2 inline-block w-6 h-6 border-4 border-brand-blue border-t-transparent rounded-full animate-spin" />
-      )}
     </div>
   );
 }

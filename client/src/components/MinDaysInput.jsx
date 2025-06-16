@@ -11,14 +11,15 @@ export default function MinDaysInput({ value, onChange }) {
   };
 
   return (
-    <input
-      id="min-days"
-      type="text"
-      placeholder="Minimo de Asistencias"
-      value={value}
-      onChange={handle}
-      disabled={!fileId}
-      className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mint placeholder:text-gray-400"
-    />
+    <div className="w-[151px]">
+      <input
+        id="min-days"
+        type="text"
+        value={value}
+        onChange={handle}
+        disabled={!fileId}
+        className="w-full h-[36px] px-4 bg-brand-inputBg shadow-custom rounded-lg text-center font-inter text-[32px] tracking-[0.5em] focus:outline-none"
+      />
+    </div>
   );
 }
