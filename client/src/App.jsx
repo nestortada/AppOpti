@@ -6,23 +6,19 @@ import IssuesPanel from './components/IssuesPanel';
 import { FileProvider } from './context/FileContext';
 import { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
-import styles from './components/UI.module.css';
-
 function Inner() {
   const [min, setMin] = useState('');
 
   return (
-    <>
-      <header className={styles.header} />
-      <main className={styles.main}>
-        <div className={styles.grid}>
-          <JsonPreview />
-          <LintPanel />
-        </div>
-        <ActionButtons min={min} setMin={setMin} />
-        <IssuesPanel />
-      </main>
-    </>
+    <div className="container">
+      <h1 className="text-3xl font-semibold text-center mb-8">Gestor de Puestos &amp; Asistencias</h1>
+      <div className="grid md:grid-cols-2 gap-6">
+        <JsonPreview />
+        <LintPanel />
+      </div>
+      <ActionButtons min={min} setMin={setMin} />
+      <IssuesPanel />
+    </div>
   );
 }
 

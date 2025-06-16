@@ -1,6 +1,8 @@
 // Static text for minimum assists
-import styles from './UI.module.css';
-
 export default function MinAssistText() {
-  return <span className={styles.minAssist}>Mínimo de Asistencias</span>;
+  return (
+    <label htmlFor="min-days" className="text-sm font-medium text-brand-blue mb-1">
+      Mínimo de Asistencias
+    </label>
+  );
 }

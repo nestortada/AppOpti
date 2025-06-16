@@ -19,3 +19,7 @@ npm run dev
 ```
 
 Pruebas se ejecutan con `pytest` para el back-end y `npm test` para el front-end.
+
+## Rediseño Tailwind only
+
+La interfaz se rehízo utilizando exclusivamente utilidades de Tailwind CSS. Se añadieron colores de marca y la fuente **Inter** mediante la configuración de Tailwind para lograr el nuevo estilo.

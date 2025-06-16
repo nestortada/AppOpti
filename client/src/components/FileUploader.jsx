@@ -3,7 +3,7 @@ import { useState } from 'react';
 import api from '../api/axios';
 import { toast } from 'react-hot-toast';
 import { useFile } from '../context/FileContext';
-import styles from './UI.module.css';
+
 
 export default function FileUploader() {
   const { setFileId, setLint, setSummary, setSample } = useFile();
@@ -33,23 +33,25 @@ export default function FileUploader() {
   };
 
   return (
-    <div>
+    <div className="flex items-center gap-2">
       <input
         id="file-input"
         type="file"
         accept="application/json"
         onChange={onChange}
-        className={styles.hiddenInput}
+        className="sr-only"
       />
       <label
         htmlFor="file-input"
-        className={`${styles.btn} ${styles.btnGreen}`}
+        className="w-full h-14 flex items-center justify-center gap-3 bg-brand-lightmint text-brand-blue font-semibold rounded-xl transition hover:bg-brand-lightmint/90 hover:-translate-y-[2px] hover:shadow-md cursor-pointer"
         aria-label="Cargar archivo"
       >
         Cargar archivo
       </label>
-      {fileName && <span className={styles.fileName}>{fileName}</span>}
-      {loading && <span className={styles.loader} />}
+      {fileName && <span className="ml-2 text-sm">{fileName}</span>}
+      {loading && (
+        <span className="ml-2 inline-block w-6 h-6 border-4 border-brand-blue border-t-transparent rounded-full animate-spin" />
+      )}
     </div>
   );
 }

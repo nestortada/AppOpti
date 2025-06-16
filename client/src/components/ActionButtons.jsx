@@ -3,11 +3,9 @@ import FileUploader from './FileUploader';
 import OptimizeButton from './OptimizeButton';
 import MinDaysInput from './MinDaysInput';
 import MinAssistText from './MinAssistText';
-import styles from './UI.module.css';
-
 export default function ActionButtons({ min, setMin }) {
   return (
-    <div className={styles.buttons}>
+    <div className="flex flex-col gap-4">
       <FileUploader />
       <OptimizeButton minDays={min} />
       <MinAssistText />
