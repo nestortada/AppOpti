@@ -34,10 +34,12 @@ async def upload_file(file: UploadFile = File(...)) -> FileResponse:
 
     if file.content_type != "application/json":
         raise HTTPException(status_code=422, detail="Invalid content type")
+
     spooled = SpooledTemporaryFile(max_size=10 * 1024 * 1024)
     content = await file.read()
     if len(content) > 10 * 1024 * 1024:
         raise HTTPException(status_code=422, detail="File too large")
+
     spooled.write(content)
     spooled.seek(0)
     try:
@@ -60,7 +62,12 @@ async def upload_file(file: UploadFile = File(...)) -> FileResponse:
         groups=len(data.get("Groups", {})),
         zones=len(data.get("Zones", [])),
     )
-    sample = {k: data[k][:3] if isinstance(data[k], list) else data[k] for k in REQUIRED_KEYS if k in data}
+    sample = {
+        k: data[k][:3] if isinstance(data[k], list) else data[k]
+        for k in REQUIRED_KEYS
+        if k in data
+    }
+
     return FileResponse(id=record.id, summary=summary, sample=sample)
 
 
@@ -70,9 +77,15 @@ def lint_file(file_id: UUID) -> LintResult:
 
     data = storage.load_json(file_id)
     errors: List[LintMessage] = []
-    for employee in data.get("Employees", []):
-        groups = data.get("Employees_G", {})
-        if employee not in groups.get(next(iter(groups), ""), []):
-            errors.append(LintMessage(severity="error", msg=f"Empleado {employee} sin grupo"))
-    # simple example check
+
+    employees: List[str] = data.get("Employees", [])
+    groups_mapping: Dict[str, List[str]] = data.get("Employees_G", {})
+
+    for employee in employees:
+        # Comprueba si el empleado está en alguna lista de miembros de grupo
+        if not any(employee in members for members in groups_mapping.values()):
+            errors.append(
+                LintMessage(severity="error", msg=f"Empleado {employee} sin grupo")
+            )
+
     return LintResult(errors=errors)

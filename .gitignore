@@ -10,7 +10,7 @@ client/.cache/
 client/.eslintcache
 
 # Python
-venv/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
