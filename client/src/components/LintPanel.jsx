@@ -1,9 +1,10 @@
-// Accordion listing lint messages
+// Shows lint result from backend
 import { useEffect } from 'react';
 import api from '../api/axios';
 import { useFile } from '../context/FileContext';
+import styles from './UI.module.css';
 
-export default function LintAccordion() {
+export default function LintPanel() {
   const { fileId, lint, setLint } = useFile();
 
   useEffect(() => {
@@ -13,13 +14,9 @@ export default function LintAccordion() {
 
   if (!lint.length) return null;
   return (
-    <details className="mt-4">
-      <summary>Lint Result</summary>
-      <ul>
-        {lint.map((e, idx) => (
-          <li key={idx}>{e.severity}: {e.msg}</li>
-        ))}
-      </ul>
-    </details>
+    <div className={`${styles.lintBox} ${styles.lint} ${styles.preview}`} role="alert">
+      <h2>Lint Result</h2>
+      <pre>{lint.map((e) => `${e.severity}: ${e.msg}`).join('\n')}</pre>
+    </div>
   );
 }

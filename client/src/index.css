@@ -8,43 +8,13 @@ body {
 }
 
 :root {
-  --yellow-bg: #FCD858;
-  --yellow-top: #FFB326;
-  --green-btn: #32D657;
-  --green-hov: #24B648;
-  --red-btn: #E64444;
-  --red-hov: #C93636;
+  --bg-yellow: #FCD858;
+  --top-yellow: #FFB326;
+  --green: #32D657;
+  --green-hov: #25B24D;
+  --red: #E64444;
+  --red-hov: #C93434;
   --grey-btn: #F0F0F0;
-  --grey-text: #9A9A9A;
+  --grey-text: #B0B0B0;
 }
 
-.folder-bg {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.folder-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 25%;
-  width: 50%;
-  height: 60px;
-  background: #f6d58b;
-  border-radius: 25px 25px 0 0;
-}
-
-.folder-bg::after {
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #f7e3a5;
-  border-radius: 50px;
-  z-index: -1;
-}

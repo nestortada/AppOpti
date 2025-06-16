@@ -1,12 +1,11 @@
 // Component to upload a JSON file
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import api from '../api/axios';
 import { toast } from 'react-hot-toast';
 import { useFile } from '../context/FileContext';
 import styles from './UI.module.css';
 
 export default function FileUploader() {
-  const inputRef = useRef();
   const { setFileId, setLint, setSummary, setSample } = useFile();
   const [fileName, setFileName] = useState(() => localStorage.getItem('lastFileName') || '');
   const [loading, setLoading] = useState(false);
@@ -36,19 +35,19 @@ export default function FileUploader() {
   return (
     <div>
       <input
-        ref={inputRef}
+        id="file-input"
         type="file"
         accept="application/json"
         onChange={onChange}
         className={styles.hiddenInput}
       />
-      <button
+      <label
+        htmlFor="file-input"
         className={`${styles.btn} ${styles.btnGreen}`}
-        onClick={() => inputRef.current.click()}
         aria-label="Cargar archivo"
       >
         Cargar archivo
-      </button>
+      </label>
       {fileName && <span className={styles.fileName}>{fileName}</span>}
       {loading && <span className={styles.loader} />}
     </div>

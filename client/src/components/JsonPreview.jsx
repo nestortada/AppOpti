@@ -10,7 +10,7 @@ export default function JsonPreview() {
   const preview = lines.slice(0, 40).join('\n') + (lines.length > 40 ? '\u2026' : '');
 
   return (
-    <div>
+    <div className={styles.preview}>
       <h2>Preview Archivo Json</h2>
       <div className={styles.previewBox}>
         <pre>{preview}</pre>
