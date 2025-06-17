@@ -6,11 +6,11 @@ export default function JsonPreview() {
 
   if (!summary) return null;
   const lines = JSON.stringify({ summary, sample }, null, 2).split('\n');
-  const limited = lines.slice(0, 20);
+  const limited = lines.slice(0, 50);
   const preview = limited
     .map((l, i) => `${String(i + 1).padStart(2, ' ')}  ${l}`)
     .join('\n');
-  const ellipsis = lines.length > 20 ? '\n…' : '';
+  const ellipsis = lines.length > 50 ? '\n…' : '';
 
   return (
     <pre className="bg-gray-900 text-green-300 overflow-y-auto max-h-96 p-4 rounded-lg text-sm" aria-label="JSON preview">

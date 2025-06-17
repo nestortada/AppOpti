@@ -1,6 +1,6 @@
-fastapi==0.111.0
-pydantic==2.7.1
-uvicorn==0.29.0
-apscheduler==3.10.4
-python-multipart==0.0.9
-httpx==0.28.1
+fastapi
+pydantic
+uvicorn
+apscheduler
+python-multipart
+httpx

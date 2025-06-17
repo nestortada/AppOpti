@@ -12,7 +12,7 @@ export default function ActionButtons({ min, setMin }) {
         <MinAssistText />
         <MinDaysInput value={min} onChange={setMin} />
       </div>
-      <div className="mt-auto flex justify-center w-full">
+      <div className="flex justify-center w-full">
         <OptimizeButton minDays={min} />
       </div>
     </div>

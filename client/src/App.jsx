@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
 
 function Inner() {
-  const [min, setMin] = useState('3');
+  const [min, setMin] = useState('1');
 
   return (
     <main className="min-h-screen bg-[#FFF9F4] flex flex-col">
