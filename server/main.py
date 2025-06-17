@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 if __package__ is None or __package__ == "":
-    sys.path.append(str(Path(__file__).resolve().parent.parent))
+    sys.path.append(str(Path(__file__).resolve().parent))
     from server.routes import files, optimization
     from server.scheduler import scheduler
 else:
