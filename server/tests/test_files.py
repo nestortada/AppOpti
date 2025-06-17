@@ -48,3 +48,15 @@ def test_upload_missing_key() -> None:
     )
     assert resp.status_code == 422
     assert resp.json()["errors"][0]["path"] == "Employees"
+
+def test_optimize_flow() -> None:
+    resp = client.post(
+        "/api/v1/files",
+        files={"file": ("test.json", json.dumps(SAMPLE), "application/json")},
+    )
+    file_id = resp.json()["id"]
+    resp = client.post("/api/v1/optimization", json={"file_id": file_id, "min_days": 1})
+    assert resp.status_code == 200
+    job_id = resp.json()["job_id"]
+    status = client.get(f"/api/v1/optimization/{job_id}/status").json()
+    assert "state" in status

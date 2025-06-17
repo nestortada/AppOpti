@@ -1,18 +1,13 @@
 // Button to trigger optimization
-import api from '../api/axios';
-import { toast } from 'react-hot-toast';
 import { useFile } from '../context/FileContext';
 import { Settings } from 'lucide-react';
 
-export default function OptimizeButton({ minDays }) {
+export default function OptimizeButton({ minDays, onStart }) {
   const { fileId, lint } = useFile();
   const hasErrors = lint.some((e) => e.severity === 'error');
 
-  const click = async () => {
-    try {
-      await api.post('/optimization', { file_id: fileId, min_days: Number(minDays) });
-      toast.success('Optimización en cola');
-    } catch (_) {}
+  const click = () => {
+    if (onStart) onStart(fileId, Number(minDays));
   };
 
   return (

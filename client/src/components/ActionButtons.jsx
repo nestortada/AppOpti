@@ -4,7 +4,7 @@ import OptimizeButton from './OptimizeButton';
 import MinDaysInput from './MinDaysInput';
 import MinAssistText from './MinAssistText';
 
-export default function ActionButtons({ min, setMin }) {
+export default function ActionButtons({ min, setMin, onStart }) {
   return (
     <div className="flex flex-col items-center gap-6 flex-1">
       <FileUploader />
@@ -13,7 +13,7 @@ export default function ActionButtons({ min, setMin }) {
         <MinDaysInput value={min} onChange={setMin} />
       </div>
       <div className="flex justify-center w-full">
-        <OptimizeButton minDays={min} />
+        <OptimizeButton minDays={min} onStart={onStart} />
       </div>
     </div>
   );

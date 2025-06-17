@@ -5,8 +5,8 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import files, optimization
-from scheduler import scheduler
+from .routes import files, optimization
+from .scheduler import scheduler
 
 app = FastAPI(title="Opt Puestos API")
 
