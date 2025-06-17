@@ -11,19 +11,9 @@ from apscheduler.triggers.cron import CronTrigger
 
 from utils import storage
 
-LOG_PATH = Path("/var/log/opt-puestos/cleanup.log")
-LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-logging.basicConfig(filename=str(LOG_PATH), level=logging.INFO)
+# Configure simple logging
+logging.basicConfig(level=logging.INFO)
 
+# In serverless environments like Vercel, we don't need background tasks
+# as the instance is ephemeral
 scheduler = BackgroundScheduler(timezone="UTC")
-
-
-def cleanup_job() -> None:
-    """Remove files and jobs older than 24 hours."""
-
-    threshold = datetime.utcnow() - timedelta(hours=24)
-    storage.cleanup_older_than(threshold)
-    logging.info("Cleanup run at %s", datetime.utcnow().isoformat())
-
-
-scheduler.add_job(cleanup_job, CronTrigger(hour=3, minute=0))

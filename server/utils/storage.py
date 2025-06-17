@@ -15,7 +15,9 @@ from uuid import uuid4, UUID
 
 from models import FileRecord
 
-STORAGE_DIR = Path("./uploads")
+import tempfile
+
+STORAGE_DIR = Path(tempfile.gettempdir()) / "opt-puestos-uploads"
 STORAGE_DIR.mkdir(exist_ok=True)
 
 # Simple in-memory database mapping ids to FileRecord
