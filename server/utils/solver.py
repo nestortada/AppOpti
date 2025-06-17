@@ -1,9 +1,6 @@
 from __future__ import annotations
 
 from typing import Dict, Any, Tuple
-
-import pandas as pd
-import numpy as np
 from pulp import LpProblem, LpMaximize, LpVariable, LpBinary, LpInteger, lpSum, value, PULP_CBC_CMD
 
 
@@ -32,8 +29,8 @@ def run_optimization(data: Dict[str, Any], min_attendance: int) -> Dict[str, Any
     M = len(Desks)  # big-M
     # Ajusta estos pesos según tu prioridad
     W1 = 100  # cobertura mínima
-    W2 =  5  # días extra
-    W3 =   10  # penalización por día no preferido
+    W2 =   5  # días extra
+    W3 =  10  # penalización por día no preferido
     W4 =   1  # penalización aislamiento en día de reunión
     W5 =   1  # penalización por cambiar de puesto
 
@@ -49,17 +46,17 @@ def run_optimization(data: Dict[str, Any], min_attendance: int) -> Dict[str, Any
     puesto = LpVariable.dicts('puesto', Employees,                      cat=LpBinary)
     solo   = LpVariable.dicts('solo',   (Groups, Zones, Days),          cat=LpBinary)
     n      = LpVariable.dicts('n',      (Groups, Zones, Days), lowBound=0, cat=LpInteger)
-    k      = LpVariable.dicts('k',      Employees,                 lowBound=0, cat=LpInteger)
+    k      = LpVariable.dicts('k',      Employees,                      lowBound=0, cat=LpInteger)
 
     # 6. Función objetivo
     prob += (
         W1 * lpSum(y[e]           for e in Employees)
-    + W2 * lpSum(k[e]           for e in Employees)
-    - W3 * lpSum((1 - pref[e,t]) * w[e][t]
-                for e in Employees for t in Days)
-    - W4 * lpSum(solo[g][z][t]
-                for g in Groups for z in Zones for t in Days)
-    - W5 * lpSum((1 - puesto[e]) for e in Employees)
+      + W2 * lpSum(k[e]           for e in Employees)
+      - W3 * lpSum((1 - pref[e,t]) * w[e][t]
+                  for e in Employees for t in Days)
+      - W4 * lpSum(solo[g][z][t]
+                  for g in Groups for z in Zones for t in Days)
+      - W5 * lpSum((1 - puesto[e]) for e in Employees)
     )
 
     # 7. Restricciones
@@ -127,7 +124,6 @@ def run_optimization(data: Dict[str, Any], min_attendance: int) -> Dict[str, Any
     # R10. Cálculo de días adicionales
     for e in Employees:
         prob += k[e] == lpSum(w[e][t] for t in Days) - 1
-
 
     prob.solve(PULP_CBC_CMD(msg=False))
 

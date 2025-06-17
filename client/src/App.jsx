@@ -11,18 +11,16 @@ import api from './api/axios';
 
 function Inner() {
   const [min, setMin] = useState('1');
-  const [jobId, setJobId] = useState(() => localStorage.getItem('job_id'));
+  const [jobId, setJobId] = useState(null);
 
   const startJob = async (fileId, m) => {
     try {
       const { data } = await api.post('/optimization', { file_id: fileId, min_days: m });
       setJobId(data.job_id);
-      localStorage.setItem('job_id', data.job_id);
     } catch (_) {}
   };
 
   const finishJob = (newMin) => {
-    localStorage.removeItem('job_id');
     setJobId(null);
     if (newMin) setMin(String(newMin));
   };

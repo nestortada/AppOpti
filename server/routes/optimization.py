@@ -23,13 +23,20 @@ def optimize(payload: OptimizationRequest) -> dict:
 
 @router.get("/{job_id}/status")
 def job_status(job_id: str) -> dict:
-    job = get_status(job_id)
-    resp = {"state": job.status}
-    if job.status == "success":
-        resp.update(job.result["kpis"])
-    if job.error:
-        resp["error"] = job.error
-    return resp
+    """Get the status of an optimization job."""
+    try:
+        job = get_status(job_id)
+        resp = {"state": job.status}
+        if job.status == "success":
+            resp.update(job.result["kpis"])
+        if job.error:
+            resp["error"] = job.error
+        return resp
+    except KeyError:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Job {job_id} not found. The job may have expired or was never created.",
+        )
 
 
 @router.get("/{job_id}/log")

@@ -28,7 +28,14 @@ export default function JobMonitor({ jobId, onFinish }) {
           setKpis({ error: data.error });
           clearInterval(poll);
         }
-      } catch (_) {}
+      } catch (error) {
+        if (error.response?.status === 404) {
+          // Job not found, treat as failure
+          setState('failure');
+          setKpis({ error: 'Proceso de optimización no encontrado. Por favor intente de nuevo.' });
+          clearInterval(poll);
+        }
+      }
     }, 3000);
     return () => clearInterval(poll);
   }, [jobId]);
