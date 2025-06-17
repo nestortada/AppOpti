@@ -7,7 +7,7 @@ import FileUploader from '../src/components/FileUploader.jsx';
 describe('UI pieces', () => {
   it('renders upload button', () => {
     render(<FileProvider><FileUploader /></FileProvider>);
-    expect(screen.getByText('Cargar archivo')).toBeInTheDocument();
+    expect(screen.getByText('Cargar archivo')).not.toBeNull();
   });
 
   it('validates min days regex', () => {

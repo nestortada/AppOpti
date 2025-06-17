@@ -10,8 +10,8 @@ from uuid import UUID
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 
-from models import FileResponse, Summary, LintResult, LintMessage
-from utils import storage
+from ..models import FileResponse, Summary, LintResult, LintMessage
+from ..utils import storage
 
 router = APIRouter(prefix="/api/v1/files", tags=["files"])
 
