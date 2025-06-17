@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from ..models import OptimizationRequest
+from models import OptimizationRequest
 
 router = APIRouter(prefix="/api/v1/optimization", tags=["optimization"])
 
