@@ -16,18 +16,14 @@ export default function OptimizeButton({ minDays }) {
   };
 
   return (
-    <div className="relative">
-      <button
-        className="w-[263px] h-[70px] flex items-center gap-4 bg-brand-optimizeBtn shadow-custom disabled:opacity-50 disabled:cursor-not-allowed"
-        onClick={click}
-        disabled={!fileId || hasErrors}
-        aria-label="Optimizar"
-      >
-        <div className="ml-3">
-          <Settings className="w-12 h-12" />
-        </div>
-        <span className="font-inter text-base tracking-[0.5em]">Optimizar</span>
-      </button>
-    </div>
+    <button
+      className="flex items-center justify-center gap-2 bg-brand-optimizeBtn text-brand-blue w-full max-w-xs py-4 rounded-lg shadow-custom disabled:opacity-50 disabled:cursor-not-allowed"
+      onClick={click}
+      disabled={!fileId || hasErrors}
+      aria-label="Optimizar"
+    >
+      <Settings className="w-6 h-6" />
+      <span className="tracking-widest font-medium">Optimizar</span>
+    </button>
   );
 }
