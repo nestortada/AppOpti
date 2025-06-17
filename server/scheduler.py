@@ -9,7 +9,13 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from .utils import storage
+import sys
+
+if __package__ is None or __package__ == "":
+    sys.path.append(str(Path(__file__).resolve().parent.parent))
+    from server.utils import storage
+else:
+    from .utils import storage
 
 LOG_PATH = Path("/var/log/opt-puestos/cleanup.log")
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
