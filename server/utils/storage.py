@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Dict, Any, List
 from uuid import uuid4, UUID
 
-from ..models import FileRecord
+from models import FileRecord
 
 STORAGE_DIR = Path("./uploads")
 STORAGE_DIR.mkdir(exist_ok=True)
