@@ -3,4 +3,4 @@ pydantic
 uvicorn
 apscheduler
 python-multipart
-httpx
+httpx<0.27

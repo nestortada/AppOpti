@@ -5,8 +5,18 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routes import files, optimization
-from .scheduler import scheduler
+# When executed directly, __package__ is not set and relative imports fail.
+# Adjust sys.path so we can import the modules as part of the ``server`` package.
+import sys
+from pathlib import Path
+
+if __package__ is None or __package__ == "":
+    sys.path.append(str(Path(__file__).resolve().parent.parent))
+    from server.routes import files, optimization
+    from server.scheduler import scheduler
+else:
+    from .routes import files, optimization
+    from .scheduler import scheduler
 
 app = FastAPI(title="Opt Puestos API")
 
