@@ -21,7 +21,7 @@ export default function JobMonitor({ jobId, onFinish }) {
         const { data } = await api.get(`/optimization/${jobId}/status`);
         setState(data.state);
         if (data.state === 'success') {
-          setKpis({ score: data.score, preferences: data.preferences, assigned: data.assigned });
+          setKpis({ score: data.score, non_preferred_pct: data.non_preferred_pct, assigned_pct: data.assigned_pct , solo_pct: data.solo_pct });
           clearInterval(poll);
         }
         if (data.state === 'failure') {

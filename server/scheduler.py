@@ -9,7 +9,7 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from .utils import storage
+from utils import storage
 
 # Configure simple logging
 logging.basicConfig(level=logging.INFO)

@@ -39,3 +39,6 @@ server/*.pyc
 
 # Build output (si usas algún sistema)
 build/
+
+# Firebase
+**/opti-e5eaa-firebase-adminsdk-*.json

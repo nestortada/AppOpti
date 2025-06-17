@@ -8,3 +8,4 @@ pulp
 pandas
 numpy
 firebase-admin
+python-dotenv

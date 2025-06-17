@@ -4,9 +4,17 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
-from .routes import files, optimization
-from .scheduler import scheduler
+
+load_dotenv()
+
+from routes import files, optimization
+from scheduler import scheduler
+from utils.firebase_config import setup_firebase_credentials
+
+
+setup_firebase_credentials()
 
 app = FastAPI(title="Opt Puestos API")
 

@@ -2,21 +2,23 @@ from __future__ import annotations
 
 import uuid
 import threading
-import os
+import logging
 from dataclasses import dataclass
 from typing import Dict, Any
 
-from firebase_admin import firestore, initialize_app, credentials
+from firebase_admin import firestore
 
 from . import storage
 from .solver import run_optimization
+from .firebase_config import setup_firebase_credentials
 
-# Initialize Firebase if credentials provided
-try:
-    initialize_app(credentials.Certificate(os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")))
-    db = firestore.client()
-except Exception:
-    db = None
+# Initialize Firestore client
+firebase_app = setup_firebase_credentials()
+db = None
+if firebase_app:
+    db = firestore.client(firebase_app)
+else:
+    logging.warning("Firebase initialization failed. Some features may be unavailable.")
 
 @dataclass
 class JobRecord:
@@ -40,6 +42,7 @@ def _run(job_id: str, file_id: uuid.UUID, min_days: int) -> None:
         job.status = "success"
         if db:
             doc = {
+                "status": "success",
                 "assignments": result["assignments"],
                 "kpis": result["kpis"],
                 "timestamp": firestore.SERVER_TIMESTAMP,

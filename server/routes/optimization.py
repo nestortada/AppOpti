@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
 
-from ..models import OptimizationRequest
-from ..utils.optimizer import launch_job, get_status
-from ..utils import storage
+from models import OptimizationRequest
+from utils.optimizer import launch_job, get_status
+from utils import storage
 
 router = APIRouter(prefix="/api/v1/optimization", tags=["optimization"])
 
