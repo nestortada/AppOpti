@@ -29,7 +29,9 @@ function Inner() {
     <main className="min-h-screen bg-[#FFF9F4] flex flex-col">
       <header className="py-6">
         <h1 className="text-3xl font-bold text-center tracking-widest">Gestor de Puestos &amp; Asistencias</h1>
+        <iframe title="test" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiM2FhMmM1YTctOGYwOC00ODU2LTlhOWEtZGMxYTZiMWJmOGMyIiwidCI6ImFjYTUxNjMxLTAwZmUtNDkwZC05MWFiLTE2M2VmODcyNjBlZSIsImMiOjR9" frameBorder="0" allowFullScreen="true"></iframe>
       </header>
+
 
       <section className="flex-grow bg-[#EBF0FF] shadow-custom max-w-3xl mx-auto px-4 py-8 flex flex-col">
         <ActionButtons min={min} setMin={setMin} onStart={startJob} />

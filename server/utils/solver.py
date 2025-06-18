@@ -79,11 +79,11 @@ def run_optimization(data: Dict[str, Any], min_attendance: int) -> Dict[str, Any
 
     # R3. Asistencia mínima (1 día)
     for e in Employees:
-        prob += lpSum(w[e][t] for t in Days) >= 1
+        prob += lpSum(w[e][t] for t in Days) >= min_attendance
 
     # R4. Indicador de cobertura
     for e in Employees:
-        prob += y[e] <= lpSum(w[e][t] for t in Days)
+        prob += y[e] * min_attendance <= lpSum(w[e][t] for t in Days)
 
     # R5. Un día de reunión por grupo
     for g in Groups:
