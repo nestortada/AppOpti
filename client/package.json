@@ -10,11 +10,18 @@
     "test": "vitest run --environment jsdom"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.14",
     "axios": "^1.6.7",
+    "firebase": "^11.9.1",
+    "fuse.js": "^7.1.0",
     "lucide-react": "^0.516.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^7.6.2",
+    "react-select": "^5.10.1",
+    "recharts": "^2.15.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@testing-library/react": "^14.1.2",

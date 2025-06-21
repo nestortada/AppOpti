@@ -70,7 +70,7 @@ export default function FileUploader() {
         aria-label="Cargar archivo"
       >
         <FileIcon className="w-6 h-6" />
-        {loading ? 'Cargando...' :  'Seleccionar archivo JSON' || 'Seleccionar archivo JSON'}
+        {loading ? 'Cargando...' :  'Cargar archivo'}
       </label>
     </div>
   );
