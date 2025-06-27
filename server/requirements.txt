@@ -4,9 +4,6 @@ uvicorn
 apscheduler
 python-multipart
 httpx>=0.28,<0.29
-ortools
 firebase-admin
 python-dotenv
-pandas>=2.2
-openpyxl>=3.1
 pulp
