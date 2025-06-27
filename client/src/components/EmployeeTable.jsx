@@ -1,6 +1,6 @@
 export default function EmployeeTable({ assignments = [] }) {
   return (
-    <div className="bg-gray-100 rounded-lg p-2 overflow-auto" aria-label="Tabla de Empleado - Escritorio - Zona">
+    <div className="bg-gray-100 rounded-lg p-2 overflow-y-auto" style={{ maxHeight: '28rem' }} aria-label="Tabla de Empleado - Escritorio - Zona">
       <table className="min-w-full text-sm">
         <thead>
           <tr className="text-left">
@@ -19,6 +19,9 @@ export default function EmployeeTable({ assignments = [] }) {
           ))}
         </tbody>
       </table>
+      {assignments.length > 9 && (
+        <div className="text-xs text-center text-gray-500 mt-2">Mostrando 9 de {assignments.length} empleados. Usa scroll para ver más.</div>
+      )}
     </div>
   );
 }

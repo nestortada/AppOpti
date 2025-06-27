@@ -41,13 +41,31 @@ def _run(job_id: str, file_id: uuid.UUID, min_days: int) -> None:
         job.result = result
         job.status = "success"
         if db:
+            # Convert data types for Firebase compatibility
             doc = {
                 "status": "success",
                 "assignments": result["assignments"],
+                "group_zones_table": result["group_zones_table"],
                 "kpis": result["kpis"],
                 "timestamp": firestore.SERVER_TIMESTAMP,
                 "minAttendance": min_days,
                 "file_id": str(file_id),
+                # New metrics
+                "employees_g": {str(k): str(v) for k, v in result["employees_g"].items()},
+                "meeting_days": {str(k): str(v) for k, v in result["meeting_days"].items()},
+                "different_desks": result["different_desks"],
+                "lonely_members": [
+                    {"group": str(g), "employee": str(e), "day": str(d), "zone": str(z)}
+                    for g, e, d, z in result["lonely_members"]
+                ],
+                "violated_preferences": [
+                    {"employee": str(e), "day": str(d), "preferences": str(p) if not isinstance(p, (list, tuple)) else ', '.join(map(str, p))}
+                    for e, d, p in result["violated_preferences"]
+                ],
+                "unused_desks": [
+                    {"desk": str(desk), "day": str(day), "obs": str(obs)}
+                    for desk, day, obs in result["unused_desks"]
+                ]
             }
             db.collection("optimizations").document(job_id).set(doc)
     except Exception as exc:

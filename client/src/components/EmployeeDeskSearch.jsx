@@ -22,19 +22,25 @@ export default function EmployeeDeskSearch({ assignments = [] }) {
   let card = null;
   if (selected) {
     if (selected.type === 'employee') {
-      const days = assignments.filter(a => a.employee === selected.id).map(a => `${a.day}: ${a.desk}`);
+      const days = assignments.filter(a => a.employee === selected.id);
+      // Buscar grupo del empleado usando data.employees_g
+      const group = data?.employees_g?.[selected.id] || '-';
       card = (
         <div className="p-4 bg-white rounded shadow mt-4">
           <div className="flex items-center gap-2 font-bold"><User className="w-5" /> {selected.id}</div>
-          {days.map((d,i) => <p key={i}>{d}</p>)}
+          <div className="text-sm text-gray-500 mb-2">Grupo: <span className="font-semibold text-black">{group}</span></div>
+          {days.map((a,i) => <p key={i}>{a.day}: {a.desk}</p>)}
         </div>
       );
     } else {
-      const days = assignments.filter(a => a.desk === selected.id).map(a => `${a.day}: ${a.employee}`);
+      const days = assignments.filter(a => a.desk === selected.id);
+      // Buscar zona del escritorio (la más frecuente en las asignaciones)
+      const zone = days.length > 0 ? (days[0].zone || '-') : '-';
       card = (
         <div className="p-4 bg-white rounded shadow mt-4">
           <div className="flex items-center gap-2 font-bold"><Monitor className="w-5" /> {selected.id}</div>
-          {days.map((d,i) => <p key={i}>{d}</p>)}
+          <div className="text-sm text-gray-500 mb-2">Zona: <span className="font-semibold text-black">{zone}</span></div>
+          {days.map((a,i) => <p key={i}>{a.day}: {a.employee}</p>)}
         </div>
       );
     }

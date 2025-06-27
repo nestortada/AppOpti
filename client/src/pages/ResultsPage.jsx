@@ -38,12 +38,23 @@ export default function ResultsPage() {
   if (!data) return <p className="text-center mt-10">Cargando…</p>;
 
   return (
-    <div className="min-h-screen bg-[#E3F0F9] p-4 relative">
+    <main className="min-h-screen bg-[#E3F0F9] flex flex-col items-center px-2 md:px-0">
       <ShareModal />
-      <h1 className="text-2xl font-bold text-center mb-4">Resultados de Optimización</h1>
+      <header className="w-full max-w-6xl mx-auto mt-8 mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-[#1E2A39] tracking-tight mb-2">
+          Resultados de Optimización de Puestos
+        </h1>
+      </header>
       <KPISection kpis={data.kpis} />
-      <DayTabs assignments={data.assignments} />
-      <EmployeeDeskSearch assignments={data.assignments} />
-    </div>
+      <section className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
+        <div className="flex-1 bg-[#F3F3F3] rounded-xl shadow-md p-6">
+          <DayTabs assignments={data.assignments} groupZonesTable={data.group_zones_table || []} />
+        </div>
+        <aside className="w-full lg:w-[374px] bg-[#FAFAFA] rounded-xl shadow-md p-6 flex flex-col items-center">
+          <h2 className="text-xl font-bold mb-4 text-center">Empleado o Escritorio</h2>
+          <EmployeeDeskSearch assignments={data.assignments} />
+        </aside>
+      </section>
+    </main>
   );
 }

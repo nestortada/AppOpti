@@ -47,7 +47,7 @@ export default function JobMonitor({ jobId, onFinish }) {
   }, [jobId]);
 
   if (!jobId || state === 'success' || state === 'failure') {
-    if (state === 'success') return <SuccessModal kpis={kpis} onClose={onFinish} />;
+    if (state === 'success') return <SuccessModal kpis={kpis} onClose={onFinish} jobId={jobId} />;
     if (state === 'failure') return <FailureModal error={kpis?.error} onRetry={onFinish} />;
     return null;
   }
