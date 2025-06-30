@@ -96,7 +96,7 @@ def run_optimization(data: Dict[str, Any], min_attendance: int) -> Dict[str, Any
     # 3. Pesos
     W_extra   = 5
     W_notpref = 8
-    W_iso     = 60
+    W_iso     = 1000
     W_change  = 10
 
     # 4. Definición del problema
@@ -154,7 +154,7 @@ def run_optimization(data: Dict[str, Any], min_attendance: int) -> Dict[str, Any
 
     # 8. Resolver
     begin_time = time.time()
-    prob.solve(PULP_CBC_CMD(msg=False, threads=0 ))
+    prob.solve(PULP_CBC_CMD(msg=False, threads=0 , timeLimit= 60*60*6 ))
     end_time = time.time()
     print(f"Optimization completed in {end_time - begin_time:.2f} seconds")
 
